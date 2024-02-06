@@ -123,14 +123,15 @@ final class ASDiskCache: NSObject {
                 }
             })
         
+        print("Total Size: \(total)")
         unlock()
     }
 
     private func setObject(_ obj: Any,
                            key: String,
                            cost: Int) {
-        guard !attributes.keys.contains(key) else { return }
-        
+        guard attributes[trim(key)] == nil else { return }
+
         lock()
         print("=====================================================================")
         print("Key: \(key)\nSize: \(cost)\nTotal: \(total)\n")
